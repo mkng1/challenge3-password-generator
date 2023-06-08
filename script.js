@@ -119,6 +119,7 @@ var generatePassword = function() {
 
   // Initialise final variable to return
   var passwordCandidate = [];
+  var stringCandidate = "";
 
   // Ask user how many characters to generate. min:8, max 128.
   choiceLength = window.prompt("How long should the password be?")
@@ -132,17 +133,16 @@ var generatePassword = function() {
   }
 
   // Ask user for first criteria
-  choiceSpecial = window.confirm("Does the password require special characters?");
+  choiceSpecial = window.confirm("Does the password allow special characters?");
 
   // Ask user for second criteria
-  choiceNumbers = window.confirm("Does the password require numbers?");
+  choiceNumbers = window.confirm("Does the password allow numbers?");
 
   // Ask user for third criteria
-  choiceLower = window.confirm("Does the password require lower case alphabet?");
+  choiceLower = window.confirm("Does the password allow lower case alphabet?");
 
   // Ask user for final criteria
-  choiceUpper = window.confirm("Does the password require upper case alphabet?");
-
+  choiceUpper = window.confirm("Does the password allow upper case alphabet?");
 
 
 
@@ -167,11 +167,17 @@ var generatePassword = function() {
     var newChar = randomChar[index];
     passwordCandidate = passwordCandidate.concat(newChar);
 
-    // Terminate logic if no char selected
+    // Terminate logic if no criteria selected
     if (!choiceSpecial && !choiceNumbers && !choiceLower && !choiceUpper) {
       return ("You have not chosen any characters");
     }
   }
-  return (passwordCandidate);
+
+  // Converts array to string
+  for (let index = 0; index < passwordCandidate.length; index++) {
+    stringCandidate = stringCandidate + passwordCandidate[index];
+  }
+
+  return (stringCandidate);
 }
 
